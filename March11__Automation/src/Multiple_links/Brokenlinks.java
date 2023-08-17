@@ -14,57 +14,57 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Brokenlinks {
 
 	public static void main(String[] args) throws IOException {
-		
-        System.setProperty("webdriver.Chrome.Driver", "C:\\Users\\Prashant\\eclipse-workspace\\March11__Automation\\Resources\\chromedriver.exe");
-        
+
+		System.setProperty("Webdriver.Chrome.Driver",
+				"C:\\Users\\Prashant\\eclipse-workspace\\March11__Automation\\Resources\\chromedriver.exe");
+
 		WebDriver driver = new ChromeDriver();
-		
+
 		driver.manage().window().maximize();
-		
+
 		driver.get("https://www.facebook.com/");
-		
-		List<WebElement> Links=driver.findElements(By.tagName("a"));
-		
-		System.out.println("Total links -->"+Links.size()); // int 
-		
-		int Bronkenlinks=0;
-		
-		for(WebElement L1:Links) {
-			
-			
+
+		List<WebElement> Links = driver.findElements(By.tagName("a"));
+
+		System.out.println("Total links -->" + Links.size()); // int
+
+		int Bronkenlinks = 0;
+
+		for (WebElement L1 : Links) {
+
 			// By using the href we can get the URL of the required link
 			String url = L1.getAttribute("href");
-			
-			if(url==null || url.isEmpty()) {
-				
+
+			if (url == null || url.isEmpty()) {
+
 				System.out.println("url is empty or null");
 			}
-			
-			URL L2= new URL(url);
-			
+
+			URL L2 = new URL(url);
+
 			// Create the object ULR object"L2"
-			
-			//HttpURLConnection httpscode = (HttpURLConnection) L2.openConnection(); // 
-			
-			HttpURLConnection httpscode= (HttpURLConnection) L2.openConnection();
+
+			// HttpURLConnection httpscode = (HttpURLConnection) L2.openConnection(); //
+
+			HttpURLConnection httpscode = (HttpURLConnection) L2.openConnection();
+
 			httpscode.connect();
 			// 200--ok
-			//400--bad request
-			
-			if(httpscode.getResponseCode()>=400) {
-				
-				System.out.println(httpscode.getResponseCode()+"--->"+url+"is--> broken link");
+			// 400--bad request
+
+			if (httpscode.getResponseCode() >= 400) {
+
+				System.out.println(httpscode.getResponseCode() + "--->" + url + "is--> broken link");
 				Bronkenlinks++;
-				
+
+			} else {
+
+				System.out.println(httpscode.getResponseCode() + "--->" + url + "is--> Valid link");
+
 			}
-			else {
-				
-				System.out.println(httpscode.getResponseCode()+"--->"+url+"is--> Valid link");
-				
-			}
-			
+
 		}
-		System.out.println("No. of broken links-->"+Bronkenlinks);
+		System.out.println("No. of broken links-->" + Bronkenlinks);
 
 		driver.quit();
 	}

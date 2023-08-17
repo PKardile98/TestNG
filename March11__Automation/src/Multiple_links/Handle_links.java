@@ -12,7 +12,7 @@ public class Handle_links {
 	public static void main(String[] args) {
 		
 
-		System.setProperty("webdriver.Chrome.Driver", "C:\\Users\\Prashant\\eclipse-workspace\\March11__Automation\\Resources\\chromedriver.exe");
+		System.setProperty("webdriver.Chrome.Driver", "C:\\Users\\Prashant\\git\\TestNG\\March11__Automation\\Resources\\chromedriver.exe");
         
 		WebDriver driver = new ChromeDriver();
 		

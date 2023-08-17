@@ -31,6 +31,8 @@ public class Explicit_wait {
 		
 		WebElement Element_1 = My_Wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("dest")));
 		
+        
+        
 		Element_1.sendKeys("Banglore");
 		
 
